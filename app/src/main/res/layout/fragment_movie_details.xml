@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+   >
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.vivek.omdb.viewmodel.MovieDetailsViewModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ScrollView
+        android:visibility="visible"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/search_list_title_margin_left"
+                android:layout_marginTop="@dimen/heading_top"
+                android:layout_marginEnd="@dimen/search_list_title_margin_left"
+                android:text="@{viewModel.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                android:textSize="@dimen/moviedetail_title_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.year}"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintEnd_toStartOf="@+id/rated"
+                app:layout_constraintHorizontal_weight="0.3"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toTopOf="@+id/rated" />
+
+            <TextView
+                android:id="@+id/rated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.rated}"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintEnd_toStartOf="@+id/runtime"
+                app:layout_constraintHorizontal_weight="0.3"
+                app:layout_constraintStart_toEndOf="@+id/year"
+                app:layout_constraintTop_toTopOf="@+id/runtime" />
+
+            <TextView
+                android:id="@+id/runtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.runtime}"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintEnd_toStartOf="@+id/language"
+                app:layout_constraintHorizontal_weight="0.4"
+                app:layout_constraintStart_toEndOf="@+id/rated"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <TextView
+                android:id="@+id/language"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.language}"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintEnd_toEndOf="@id/imdbRating"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintStart_toEndOf="@+id/runtime"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <TextView
+                android:id="@+id/imdbRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_star_gold_24dp"
+                android:text="@{viewModel.imdbRating}"
+                app:layout_constraintTop_toTopOf="@id/year"
+                app:layout_constraintBottom_toBottomOf="@id/year"
+                app:layout_constraintEnd_toEndOf="@id/title"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintStart_toEndOf="@+id/language" />
+
+            <View
+                android:id="@+id/linesep"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/search_list_title_margin_left"
+                android:background="@color/dark_gray"
+                app:layout_constraintTop_toBottomOf="@+id/barrier1" />
+
+            <ImageView
+                android:id="@+id/poster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/search_list_title_margin_left"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@+id/linesep"
+                bind:imageUrl="@{viewModel.posterLink}" />
+
+
+            <TextView
+                android:id="@+id/plot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="@dimen/search_list_poster_margin_top"
+                android:text="@{viewModel.plot}"
+                app:layout_constraintEnd_toEndOf="@id/title"
+                app:layout_constraintStart_toEndOf="@+id/poster"
+                app:layout_constraintTop_toTopOf="@id/poster" />
+
+            <View
+                android:id="@+id/linesep1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/search_list_title_margin_left"
+                android:background="@color/dark_gray"
+                app:layout_constraintTop_toBottomOf="@+id/barrier" />
+
+
+            <TextView
+                android:id="@+id/rotTomRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/tomato"
+                android:padding="@dimen/search_list_title_margin_left"
+                android:text="@{viewModel.rottenTomRating}"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/metascore"
+                app:layout_constraintStart_toEndOf="@+id/imdbRating"
+                app:layout_constraintTop_toBottomOf="@+id/linesep1" />
+
+            <TextView
+                android:id="@+id/metascore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/heart_gold"
+                android:padding="@dimen/search_list_title_margin_left"
+                android:text="6.1/10"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/title"
+                app:layout_constraintStart_toEndOf="@+id/rotTomRating"
+                app:layout_constraintTop_toBottomOf="@+id/linesep1" />
+
+
+            <TextView
+                android:id="@+id/castCrew"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/search_list_title_margin_left"
+                android:text="Cast and Crew"
+                android:textSize="@dimen/moviedetail_subtitle_size"
+                app:layout_constraintEnd_toEndOf="@id/title"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/linesep1" />
+
+            <TextView
+                android:id="@+id/director"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/search_list_poster_margin_bottom"
+                app:layout_constraintEnd_toEndOf="@id/title"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/castCrew" />
+
+            <TextView
+                android:id="@+id/writer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/search_list_poster_margin_bottom"
+                app:layout_constraintEnd_toEndOf="@id/title"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/director" />
+
+            <TextView
+                android:id="@+id/actors"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/search_list_poster_margin_bottom"
+                android:paddingBottom="@dimen/search_list_poster_margin_bottom"
+                app:layout_constraintEnd_toEndOf="@id/title"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/writer"
+                android:text="ssss"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="plot,poster"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="year,rated,runtime,language,imdbRating"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/errorTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

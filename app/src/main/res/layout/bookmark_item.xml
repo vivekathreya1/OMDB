@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewHolder"
+            type="com.vivek.omdb.view.adapter.BookmarkAdapter.BookmarkViewHolder" />
+
+        <variable
+            name="bookMarkObj"
+            type="com.vivek.omdb.model.Movie" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/bookmark_margin"
+        android:onClick="@{(v)->viewHolder.onClickRow(bookMarkObj)}">
+
+        <ImageView
+            android:id="@+id/bookmarkPosterIv"
+            android:layout_width="@dimen/bookmark_width"
+            android:layout_height="@dimen/bookmark_height"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:imageUrl="@{bookMarkObj.posterLink}" />
+
+        <TextView
+            android:id="@+id/movieTitleTv"
+            app:layout_constraintTop_toBottomOf="@+id/bookmarkPosterIv"
+            app:layout_constraintStart_toStartOf="@+id/bookmarkPosterIv"
+            app:layout_constraintEnd_toEndOf="@id/bookmarkPosterIv"
+            android:singleLine="true"
+            android:text="@{bookMarkObj.title}"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/removeBookmarkIv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/light_gray"
+            android:gravity="center"
+            android:onClick="@{(v)->viewHolder.onClickRemoveBookmark(bookMarkObj)}"
+            android:padding="@dimen/bookmark_remove"
+            android:src="@drawable/ic_close_black_24dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="@string/remove"
+            app:layout_constraintEnd_toEndOf="@id/bookmarkPosterIv"
+            app:layout_constraintStart_toStartOf="@id/bookmarkPosterIv"
+            app:layout_constraintTop_toBottomOf="@id/movieTitleTv" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

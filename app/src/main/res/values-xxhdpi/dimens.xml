@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="search_list_poster_margin_left">16dp</dimen>
+    <dimen name="search_list_poster_margin_right">16dp</dimen>
+    <dimen name="search_list_poster_margin_top">8dp</dimen>
+    <dimen name="search_list_poster_margin_bottom">8dp</dimen>
+    <dimen name="search_list_title_margin_left">16dp</dimen>
+    <dimen name="search_list_title_size">16sp</dimen>
+    <dimen name="search_list_year_margin_top">4dp</dimen>
+    <dimen name="bookmark_width">100dp</dimen>
+    <dimen name="bookmark_height">125dp</dimen>
+    <dimen name="heading_top">8dp</dimen>
+    <dimen name="toolbar_elevation">20dp</dimen>
+    <dimen name="bookmark_margin">10dp</dimen>
+    <dimen name="bookmark_remove">4dp</dimen>
+    <dimen name="bookmark_tv">8dp</dimen>
+    <dimen name="bookmark_tv_size">16sp</dimen>
+    <dimen name="moviedetail_title_size">36sp</dimen>
+    <dimen name="moviedetail_subtitle_size">24sp</dimen>
+    
+</resources>

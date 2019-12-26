@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewHolder"
+            type="com.vivek.omdb.view.adapter.MovieListAdapter.RecyclerViewHolder" />
+
+        <variable
+            name="movieObj"
+            type="com.vivek.omdb.model.Movie" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_margin="@dimen/bookmark_remove"
+        android:onClick="@{(v)->viewHolder.onClickRow(movieObj)}">
+
+
+        <ImageView
+            android:id="@+id/moviePosterIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/search_list_poster_margin_left"
+            android:paddingTop="@dimen/search_list_poster_margin_top"
+            android:paddingEnd="@dimen/search_list_poster_margin_right"
+            android:paddingBottom="@dimen/search_list_poster_margin_bottom"
+            app:imageUrl="@{movieObj.posterLink}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/movieTitleTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/search_list_poster_margin_bottom"
+            android:text="@{movieObj.title}"
+            android:textSize="@dimen/search_list_title_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/favIv"
+            app:layout_constraintStart_toEndOf="@id/moviePosterIv"
+            app:layout_constraintTop_toTopOf="@+id/moviePosterIv" />
+
+        <TextView
+            android:id="@+id/movieReleaseYearTv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/search_list_year_margin_top"
+            android:text="@{movieObj.year}"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/moviePosterIv"
+            app:layout_constraintEnd_toStartOf="@+id/favIv"
+            app:layout_constraintStart_toStartOf="@+id/movieTitleTv"
+            app:layout_constraintTop_toBottomOf="@+id/movieTitleTv" />
+
+        <ImageView
+            android:id="@+id/favIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:onClick="@{(v)->viewHolder.onClickAddBookmark(movieObj)}"
+            android:src="@drawable/heart_outline"
+            app:layout_constraintBottom_toBottomOf="@+id/moviePosterIv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/moviePosterIv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

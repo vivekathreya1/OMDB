@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.0"
+    defaultConfig {
+        applicationId "com.vivek.omdb"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "omdbApiKey", omdbApiKey)
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$rootProject.retrofitVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime:$rootProject.archLifecycleVersion"
+    implementation "androidx.navigation:navigation-fragment:$rootProject.navVersion"
+    implementation "androidx.navigation:navigation-ui:$rootProject.navVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recViewVersion"
+    implementation 'com.pixplicity.easyprefs:library:1.9.0'
+    implementation "androidx.cardview:cardview:$rootProject.cardVersion"
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'androidx.paging:paging-runtime:2.1.0'
+    implementation "androidx.room:room-runtime:$rootProject.room_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    annotationProcessor "androidx.room:room-compiler:$rootProject.room_version"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
